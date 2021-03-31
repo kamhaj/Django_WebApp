@@ -122,4 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'     # to add crispy CSS styling (for prittier forms (and validation stuff ?)
+
+LOGIN_REDIRECT_URL = 'blog-home'        # to redirect after logging in
+LOGIN_URL = 'login'                     # redirect to 'login' page if being authenticated is requred ['login' is url pattern - name in routes (urls.py)]
