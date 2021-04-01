@@ -3,10 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-# Create your models here.
-## we need users, posts.
-
-
+## one (user) to many (posts) relation
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()        # unrestricted text

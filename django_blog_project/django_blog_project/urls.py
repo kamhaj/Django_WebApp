@@ -16,7 +16,8 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from users import views as user_views
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 ## we have to put here the routes for certain apps (created using startapp command)
 urlpatterns = [
@@ -27,3 +28,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('', include('blog.urls')),        #/blog in browser would mean using blog app urls.py
 ]
+
+## according to Django docs, this way is okay when NOT IN PRODUCTION
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

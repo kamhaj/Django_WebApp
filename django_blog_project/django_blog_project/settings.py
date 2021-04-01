@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Base directory of our project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -121,6 +123,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  ## full path we want Django to store uploaded images (they are stored on the file system, not in the db)
+MEDIA_URL = '/media/'      ## public url of MEDIA_ROOT directory (what we use in the browser) - e.g. /media/profile_pics/default.jpg
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'     # to add crispy CSS styling (for prittier forms (and validation stuff ?)
 
