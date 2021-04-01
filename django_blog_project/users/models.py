@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from PIL import Image
 
 
 ## create User model to add e.g. a profile picture (extend existing one)
@@ -15,3 +16,17 @@ class Profile(models.Model):
     ## how we want Profile to be displayed (instead of default "Profile Object"
     def __str__(self):
         return f'{self.user.username} Profile'
+
+    ## override parent class save method so we can resize images
+    ## TODO - delete old, unused picture
+    def save(self):
+        super().save()
+
+        ## open current Profile instance's image
+        img =  Image.open(self.image.path)
+
+        ## resize if too big
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)   ## save to the same path
